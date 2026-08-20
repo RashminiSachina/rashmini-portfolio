@@ -24,6 +24,14 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
 
+      // If scrolled to the very bottom, always highlight the last section
+      const atBottom =
+        window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4;
+      if (atBottom) {
+        setActiveSection("contact");
+        return;
+      }
+
       // Iterate from bottom section upward to find the current one
       const ids = [...sectionIds.current].reverse();
       for (const id of ids) {
@@ -62,7 +70,7 @@ export default function Navbar() {
         </a>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden md:flex items-center gap-3">
           {navLinks.map((link) => {
             const isActive = activeSection === link.href.replace("#", "");
             return (
