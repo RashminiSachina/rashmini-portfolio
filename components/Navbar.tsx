@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
@@ -17,21 +17,25 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const [mobileOpen, setMobileOpen] = useState(false);
+  // Keep a stable copy of section IDs so .reverse() doesn't mutate on each call
+  const sectionIds = useRef(navLinks.map((l) => l.href.replace("#", "")));
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
 
-      const sections = navLinks.map((l) => l.href.replace("#", ""));
-      for (const id of sections.reverse()) {
+      // Iterate from bottom section upward to find the current one
+      const ids = [...sectionIds.current].reverse();
+      for (const id of ids) {
         const el = document.getElementById(id);
-        if (el && window.scrollY >= el.offsetTop - 120) {
+        if (el && window.scrollY >= el.offsetTop - 140) {
           setActiveSection(id);
           break;
         }
       }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // run once on mount
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -42,17 +46,15 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "py-3 bg-[#0B1120]/80 backdrop-blur-xl border-b border-[#14F1D9]/10 shadow-lg shadow-black/20"
+          ? "py-3 bg-[#0B1120]/85 backdrop-blur-xl border-b border-[#14F1D9]/10 shadow-lg shadow-black/20"
           : "py-5 bg-transparent"
       }`}
     >
       <div className="site-container flex items-center justify-between">
         {/* Logo */}
-        <a href="#hero" className="group flex items-center gap-2">
-          <div className="relative">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#14F1D9] to-[#38BDF8] flex items-center justify-center text-[#0B1120] font-black text-sm font-display transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(20,241,217,0.5)]">
-              RS
-            </div>
+        <a href="#hero" className="group flex items-center gap-2.5 shrink-0">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#14F1D9] to-[#38BDF8] flex items-center justify-center text-[#0B1120] font-black text-sm font-display transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(20,241,217,0.5)]">
+            RS
           </div>
           <span className="font-display font-bold text-lg hidden sm:block">
             <span className="text-gradient">Rashmini</span>
@@ -67,17 +69,15 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                  isActive
-                    ? "text-[#14F1D9]"
-                    : "text-slate-400 hover:text-slate-100"
+                className={`relative px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
+                  isActive ? "text-[#0B1120]" : "text-slate-400 hover:text-white"
                 }`}
               >
                 {isActive && (
                   <motion.span
                     layoutId="nav-pill"
-                    className="absolute inset-0 bg-[#14F1D9]/10 border border-[#14F1D9]/20 rounded-full"
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    className="absolute inset-0 bg-gradient-to-r from-[#14F1D9] to-[#38BDF8] rounded-full shadow-[0_0_16px_rgba(20,241,217,0.4)]"
+                    transition={{ type: "spring", stiffness: 320, damping: 28 }}
                   />
                 )}
                 <span className="relative">{link.label}</span>
@@ -87,7 +87,7 @@ export default function Navbar() {
         </div>
 
         {/* CTA */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-3 shrink-0">
           <a
             href="mailto:rashminisachina@gmail.com"
             className="btn-primary text-sm py-2 px-5"
