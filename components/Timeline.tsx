@@ -6,10 +6,10 @@ import { Calendar, Award } from "lucide-react";
 
 export default function Timeline() {
   return (
-    <section id="experience" className="relative py-32 md:py-40 overflow-hidden bg-bg-secondary/30">
+    <section id="timeline" className="relative w-full overflow-hidden bg-bg-secondary/30 py-32 md:py-40">
       <div className="aurora-blob w-[400px] h-[400px] bg-[#14F1D9] left-[-10%] bottom-[20%] opacity-[0.04]" />
 
-      <div className="max-w-[896px] w-full mx-auto px-8 md:px-16 lg:px-24">
+      <div className="site-container">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

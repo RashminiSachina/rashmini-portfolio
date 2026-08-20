@@ -6,11 +6,11 @@ import { GithubIcon, LinkedinIcon } from "@/components/ui/SocialIcons";
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative py-32 md:py-40 overflow-hidden">
+    <section id="contact" className="relative w-full overflow-hidden py-32 md:py-40">
       <div className="aurora-blob w-[500px] h-[500px] bg-[#14F1D9] left-[20%] top-[10%] opacity-[0.05]" />
       <div className="aurora-blob w-[400px] h-[400px] bg-[#38BDF8] right-[-5%] bottom-[10%] opacity-[0.06]" />
 
-      <div className="max-w-[896px] w-full mx-auto px-8 md:px-16 lg:px-24">
+      <div className="site-container max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

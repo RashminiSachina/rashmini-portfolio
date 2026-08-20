@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, Download, Eye, Mail } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/SocialIcons";
@@ -48,14 +49,13 @@ function TypedText() {
   );
 }
 
-// Floating Particles
 function Particles() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
   const particles = Array.from({ length: 25 });
-  
+
   if (!mounted) return null;
-  
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {particles.map((_, i) => (
@@ -93,7 +93,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center overflow-hidden grid-bg"
+      className="relative w-full min-h-screen overflow-hidden grid-bg"
     >
       {/* Aurora blobs */}
       <div className="aurora-blob w-[500px] h-[500px] bg-[#14F1D9] left-[-10%] top-[10%]" />
@@ -102,30 +102,28 @@ export default function Hero() {
 
       <Particles />
 
-      <div className="max-w-[1120px] w-full mx-auto px-8 md:px-16 pt-28 pb-20">
-        <div className="grid lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-8 items-center">
-          {/* Left */}
+      <div className="site-container relative z-10 flex min-h-screen flex-col justify-center py-28 pb-24">
+        <div className="grid w-full grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
+          {/* Left — Content */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col gap-6"
+            className="mx-auto flex w-full max-w-xl flex-col items-center gap-5 text-center lg:mx-0 lg:max-w-none lg:items-start lg:text-left"
           >
-            {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="inline-flex w-fit items-center gap-2 bg-[#14F1D9]/10 border border-[#14F1D9]/20 rounded-full px-4 py-1.5 text-sm text-[#14F1D9] font-medium"
+              className="inline-flex w-fit items-center gap-2 rounded-full border border-[#14F1D9]/20 bg-[#14F1D9]/10 px-4 py-1.5 text-sm font-medium text-[#14F1D9]"
             >
-              <span className="w-2 h-2 rounded-full bg-[#14F1D9] animate-pulse" />
+              <span className="h-2 w-2 animate-pulse rounded-full bg-[#14F1D9]" />
               Open to Internships · Sri Lanka
             </motion.div>
 
-            {/* Name */}
             <div>
               <h1 className="font-display font-black leading-none">
-                <span className="block text-white text-5xl md:text-6xl lg:text-7xl mb-2">
+                <span className="mb-2 block text-5xl text-white md:text-6xl lg:text-7xl">
                   Rashmini
                 </span>
                 <span className="block text-gradient text-5xl md:text-6xl lg:text-7xl">
@@ -134,38 +132,30 @@ export default function Hero() {
               </h1>
             </div>
 
-            {/* Typed */}
-            <div className="text-xl md:text-2xl font-display font-medium text-slate-300 min-h-[2.5rem]">
+            <div className="min-h-[2.5rem] font-display text-xl font-medium text-slate-300 md:text-2xl">
               <TypedText />
             </div>
 
-            {/* Bio */}
-            <p className="text-slate-400 text-base md:text-lg leading-relaxed max-w-lg">
+            <p className="max-w-md text-base leading-relaxed text-slate-400 md:text-lg">
               Information Technology undergraduate at{" "}
-              <span className="text-[#38BDF8] font-medium">SLIIT</span>, Sri
+              <span className="font-medium text-[#38BDF8]">SLIIT</span>, Sri
               Lanka, building full-stack web applications powered by the{" "}
-              <span className="text-[#14F1D9] font-medium">MERN stack</span> and
+              <span className="font-medium text-[#14F1D9]">MERN stack</span> and
               AI. Passionate about crafting solutions that make a real impact.
             </p>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap gap-3 mt-2">
+            <div className="mt-1 flex flex-wrap justify-center gap-3 lg:justify-start">
               <a href="#projects" className="btn-primary">
                 <Eye size={18} className="relative z-10" />
                 <span className="relative z-10">View Projects</span>
               </a>
-              <a
-                href="/resume.pdf"
-                download
-                className="btn-outline"
-              >
+              <a href="/resume.pdf" download className="btn-outline">
                 <Download size={18} />
                 Download Resume
               </a>
             </div>
 
-            {/* Social icons */}
-            <div className="flex items-center gap-4 pt-2">
+            <div className="flex flex-wrap items-center justify-center gap-4 pt-1 lg:justify-start">
               {[
                 {
                   icon: GithubIcon,
@@ -191,30 +181,28 @@ export default function Hero() {
                   aria-label={label}
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="p-2.5 rounded-xl glass-card text-slate-400 hover:text-[#14F1D9] hover:border-[#14F1D9]/30 transition-colors"
+                  className="glass-card rounded-xl p-2.5 text-slate-400 transition-colors hover:border-[#14F1D9]/30 hover:text-[#14F1D9]"
                 >
                   <Icon size={20} />
                 </motion.a>
               ))}
-              <div className="flex items-center gap-2 text-slate-500 text-sm ml-2">
-                <span className="w-px h-5 bg-slate-700" />
+              <div className="ml-0 flex items-center gap-2 text-sm text-slate-500 sm:ml-2">
+                <span className="hidden h-5 w-px bg-slate-700 sm:block" />
                 rashminisachina@gmail.com
               </div>
             </div>
           </motion.div>
 
-          {/* Right — Profile Image */}
+          {/* Right — Profile */}
           <motion.div
-            initial={{ opacity: 0, x: 50, scale: 0.9 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex justify-center lg:justify-end"
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.35 }}
+            className="flex w-full justify-center lg:justify-center"
           >
             <div className="relative">
-              {/* Glow ring */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#14F1D9] to-[#38BDF8] blur-2xl opacity-25 scale-110" />
+              <div className="absolute inset-0 scale-110 rounded-full bg-gradient-to-br from-[#14F1D9] to-[#38BDF8] opacity-25 blur-2xl" />
 
-              {/* Rotating border */}
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -226,59 +214,25 @@ export default function Hero() {
                 className="absolute -inset-6 rounded-full border border-[#38BDF8]/10"
               />
 
-              {/* Image container */}
-              <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-2 border-[#14F1D9]/30 shadow-[0_0_60px_rgba(20,241,217,0.15)]">
-                <div className="w-full h-full bg-gradient-to-br from-[#0F1729] to-[#0B1120] flex items-center justify-center">
-                  {/* Placeholder avatar with initials */}
-                  <div className="flex flex-col items-center gap-4">
-                    <div className="w-32 h-32 rounded-full bg-gradient-to-br from-[#14F1D9]/20 to-[#38BDF8]/20 border border-[#14F1D9]/30 flex items-center justify-center">
-                      <span className="font-display font-black text-4xl text-gradient">RS</span>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-[#14F1D9] text-sm font-medium">Rashmini Sachina</p>
-                      <p className="text-slate-500 text-xs">IT Undergraduate · SLIIT</p>
-                    </div>
-                  </div>
+              <div className="relative h-72 w-72 overflow-hidden rounded-full border-2 border-[#14F1D9]/30 shadow-[0_0_60px_rgba(20,241,217,0.15)] md:h-80 md:w-80 lg:h-[22rem] lg:w-[22rem] xl:h-96 xl:w-96">
+                <Image
+                  src="/profilep.jpeg"
+                  alt="Rashmini Sachina"
+                  fill
+                  priority
+                  className="object-cover"
+                  sizes="(max-width: 768px) 18rem, (max-width: 1024px) 20rem, 24rem"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0B1120]/85 via-[#0B1120]/25 to-transparent" />
+                <div className="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center text-center">
+                  <p className="text-sm font-medium text-[#14F1D9]">
+                    Rashmini Sachina
+                  </p>
+                  <p className="text-xs text-slate-300/80">
+                    IT Undergraduate · SLIIT
+                  </p>
                 </div>
               </div>
-
-              {/* Floating badges */}
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -left-8 top-1/4 glass-card px-3 py-2 rounded-xl text-xs font-medium border border-[#14F1D9]/20 shadow-lg"
-              >
-                <span className="text-[#14F1D9]">⚡</span>
-                <span className="text-slate-300 ml-1">CGPA 3.2</span>
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1,
-                }}
-                className="absolute -right-8 bottom-1/4 glass-card px-3 py-2 rounded-xl text-xs font-medium border border-[#38BDF8]/20 shadow-lg"
-              >
-                <span className="text-[#38BDF8]">🚀</span>
-                <span className="text-slate-300 ml-1">4 Projects</span>
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [0, -6, 0] }}
-                transition={{
-                  duration: 3.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 0.5,
-                }}
-                className="absolute -bottom-4 left-1/2 -translate-x-1/2 glass-card px-4 py-2 rounded-xl text-xs font-medium border border-purple-400/20 shadow-lg"
-              >
-                <span className="text-purple-400">🎓</span>
-                <span className="text-slate-300 ml-1">SLIIT · 2027</span>
-              </motion.div>
             </div>
           </motion.div>
         </div>
@@ -288,7 +242,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-500 text-xs"
+          className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-xs text-slate-500"
         >
           <span>Scroll to explore</span>
           <motion.div

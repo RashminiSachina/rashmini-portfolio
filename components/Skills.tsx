@@ -2,7 +2,38 @@
 
 import { motion } from "framer-motion";
 import { skillGroups } from "@/lib/data";
-import ProgressRing from "./ui/ProgressRing";
+
+type Tier = 1 | 2 | 3;
+
+function getTier(level: number): Tier {
+  if (level >= 84) return 3;
+  if (level >= 74) return 2;
+  return 1;
+}
+
+function getDisplaySkills(
+  category: string,
+  skills: { name: string; level: number }[]
+) {
+  if (category === "Database") {
+    const merged = skills.filter((skill) => skill.name !== "SQL" && skill.name !== "MySQL");
+    const sqlLevel = skills
+      .filter((skill) => skill.name === "SQL" || skill.name === "MySQL")
+      .reduce((max, skill) => Math.max(max, skill.level), 0);
+
+    return sqlLevel > 0
+      ? [...merged, { name: "MySQL / SQL", level: sqlLevel }]
+      : merged;
+  }
+
+  if (category === "Tools") {
+    return skills.map((skill) =>
+      skill.name === "npm / npm" ? { ...skill, name: "npm" } : skill
+    );
+  }
+
+  return skills;
+}
 
 export default function Skills() {
   return (

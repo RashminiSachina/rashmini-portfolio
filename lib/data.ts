@@ -183,7 +183,7 @@ export const timeline: TimelineItem[] = [
     title: "G.C.E. Advanced Level – Physical Science",
     institution: "B/Dharmapala Maha Vidyalaya, Bandarawela",
     description:
-      "Completed Advanced Level studies in the Physical Science stream. Results: 1C, 2S.",
+      "Completed Advanced Level studies in the Physical Science stream.",
     type: "education",
     badge: "A/L",
   },
@@ -192,8 +192,8 @@ export const timeline: TimelineItem[] = [
     title: "G.C.E. Ordinary Level",
     institution: "B/Keppetipola Maha Vidyalaya",
     description:
-      "Outstanding Ordinary Level results: 7 A passes and 2 C passes, showcasing academic excellence from an early stage.",
+      "Completed Ordinary Level studies showcasing strong academic performance.",
     type: "education",
-    badge: "7A 2C",
+    badge: "O/L",
   },
 ];

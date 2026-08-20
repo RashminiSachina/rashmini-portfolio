@@ -13,10 +13,10 @@ import ScrollToTop from "@/components/ui/ScrollToTop";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-bg">
+    <div className="flex flex-col min-h-screen w-full bg-bg overflow-x-hidden">
       <LoadingScreen />
       <Navbar />
-      <main className="flex flex-col gap-12 md:gap-24 lg:gap-32 w-full pt-16">
+      <main className="flex w-full max-w-[100vw] flex-col items-center gap-12 pt-16 md:gap-24 lg:gap-32">
         <Hero />
         <About />
         <Skills />

@@ -35,10 +35,10 @@ const accentColors = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="relative py-32 md:py-40 overflow-hidden">
+    <section id="projects" className="relative w-full overflow-hidden py-32 md:py-40">
       <div className="aurora-blob w-[500px] h-[500px] bg-[#38BDF8] right-[-10%] top-[40%] opacity-[0.05]" />
 
-      <div className="max-w-[1280px] w-full mx-auto px-8 md:px-16 lg:px-24">
+      <div className="site-container">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
