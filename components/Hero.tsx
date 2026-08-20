@@ -102,8 +102,8 @@ export default function Hero() {
 
       <Particles />
 
-      <div className="max-w-[1280px] w-full mx-auto px-8 md:px-16 lg:px-24 pt-28 pb-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-[1120px] w-full mx-auto px-8 md:px-16 pt-28 pb-20">
+        <div className="grid lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-8 items-center">
           {/* Left */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
